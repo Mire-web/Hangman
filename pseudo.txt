@@ -1,0 +1,34 @@
+Gameplay:
+
+Game displays Home screen;
+	- one player
+	- two player
+if two player 
+	- Enter Player one name
+	- Enter Player two name
+	- ask number of rounds to play
+	- player one enter words while player two looks away from the screen
+	- omit letters from player ones word ask player one to guess; fails after three trials
+	- if player fails to guess after three tries reveal word
+	- repeat step 4 for player two
+	- repeat step 4 for set number of rounds
+	- decide winner;
+	- ask if they want to play again
+	- if yes repeat from step 3
+	- if no; exit with greeting msg;
+if one player
+	- enter username
+	- ask number of rounds;
+	- guess the omitted word
+	- if player fails to guess after three tries reveal word
+	- continue for set number of rounds
+	- ask if user wants to continue
+	- if yes repeat step 2
+	- if no; exit msg
+
+Game mode:
+	- easy: four letter word omit one
+	- medium: five letter word omit at least one at most 2;
+	- Hard: six letter word omit at least one at most 3;
+
+input 0 - returns stack frame to calling function

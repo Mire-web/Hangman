@@ -9,16 +9,16 @@
 int Home()
 {
 	int gameMode;
-	printf("\t\t1. Single Player.\n\t\t2. Multiplayer\n");
+	printf("\n\t\t1. Single Player.\n\t\t2. Multiplayer\n\t\t3. Quit\n");
 	printf("\tSelect Game Mode: ");
 	scanf("%d", &gameMode);
-	while (gameMode > 2 || gameMode < 1)
+	while (gameMode > 3 || gameMode < 1)
 	{
-		printf("\tOmo look availiable options for menu na!!\n");
+		printf("\n\tWrong selection, Try again!!\n");
 		printf("\tSelect Game Mode: ");
 		scanf("%d", &gameMode);
 	}
-	gameMode == 1 ? single_player(mode_select()) : multiplayer();
+	gameMode == 1 ? single_player(mode_select()) : gameMode == 2 ? multiplayer() : exit(98);
 	return (gameMode);
 }
 

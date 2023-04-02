@@ -14,6 +14,8 @@ void single_player(int mode);
 int mode_select();
 void update_score(int *score);
 void easy_mode();
+void medium_mode();
+void hard_mode();
 void multiplayer();
 int Home();
 

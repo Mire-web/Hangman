@@ -27,6 +27,6 @@ int main(void)
 	printf("\t**MANGMAN************************************\n");
 	printf("\t*******************MANGMAN*******************\n");
 	printf("\t************************************MANGMAN**\n\n");
-	printf("%d\n", Home());
+	Home();
 	return (0);
 }

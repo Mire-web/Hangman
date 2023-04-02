@@ -4,7 +4,8 @@
 extern char five_word[][6];
 extern char four_word[][5];
 extern char six_word[][7];
-int score = 0;
+int Player_one_score = 0;
+int Player_two_score = 0;
 int total = 0;
 
 
@@ -39,14 +40,14 @@ int mode_select()
 }
 
 /**
- * update_score - Update player score if correct
+ * update_score - Update player Player_one_score if correct
  *
- * @score: Player Score
+ * @Player_one_score: Player Score
  */
 
 void update_score(int *score)
 {
-	printf("\n\tScore: %d/%d\n", *score += 1, ++total);
+	++*score;
 }
 
 /********************SINGLE PLAYER UTILITY FUNCTIONS***********************/
@@ -73,7 +74,7 @@ void easy_mode()
 	getchar();
 	if (user == '0')
 	{
-		printf("\t\tYou scored: %d/%d\n", score, total);
+		printf("\t\tYou scored: %d/%d\n", Player_one_score, total);
 		single_player(mode_select());
 		return;
 	}
@@ -91,7 +92,7 @@ void easy_mode()
 		if (replaced[i] != word[i])
 		{
 			printf("\tWrong\n");
-			printf("\n\tScore: %d/%d\n", score, ++total);
+			printf("\n\tScore: %d/%d\n", Player_one_score, ++total);
 			mistake++;
 			break;
 		}
@@ -99,7 +100,8 @@ void easy_mode()
 	if (mistake == 0)
 	{
 		printf("\tCorrect\n");
-		update_score(&score);
+		update_score(&Player_one_score);
+		printf("\n\tScore: %d/%d\n", Player_one_score, ++total);
 	}
 	easy_mode();
 }
@@ -128,7 +130,7 @@ void medium_mode()
 	getchar();
 	if (user[0] == '0')
 	{
-		printf("\t\tYou scored: %d/%d\n", score, total);
+		printf("\t\tYou scored: %d/%d\n", Player_one_score, total);
 		single_player(mode_select());
 		return;
 	}
@@ -147,7 +149,7 @@ void medium_mode()
 		if (replaced[i] != word[i])
 		{
 			printf("\tWrong\n");
-			printf("\tScore: %d/%d\n", score, ++total);
+			printf("\tScore: %d/%d\n", Player_one_score, ++total);
 			mistake++;
 			break;
 		}
@@ -155,7 +157,7 @@ void medium_mode()
 	if (mistake == 0)
 	{
 		printf("\tCorrect\n");
-		update_score(&score);
+		update_score(&Player_one_score);
 	}
 	medium_mode();
 }
@@ -184,7 +186,7 @@ void hard_mode()
 	getchar();
 	if (user[0] == '0')
 	{
-		printf("\t\tYou scored: %d/%d\n", score, total);
+		printf("\t\tYou scored: %d/%d\n", Player_one_score, total);
 		single_player(mode_select());
 		return;
 	}
@@ -203,7 +205,7 @@ void hard_mode()
 		if (replaced[i] != word[i])
 		{
 			printf("\tWrong\n");
-			printf("\n\tScore: %d/%d\n", score, ++total);
+			printf("\n\tScore: %d/%d\n", Player_one_score, ++total);
 			mistake++;
 			break;
 		}
@@ -211,7 +213,8 @@ void hard_mode()
 	if (mistake == 0)
 	{
 		printf("\tCorrect\n");
-		update_score(&score);
+		update_score(&Player_one_score);
 	}
 	hard_mode();
 }
+

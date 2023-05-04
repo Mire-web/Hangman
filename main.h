@@ -17,6 +17,8 @@ void easy_mode();
 void medium_mode();
 void hard_mode();
 void multiplayer();
+void player_one_turn(int *score);
+void player_two_turn(int *score);
 int Home();
 
 #endif

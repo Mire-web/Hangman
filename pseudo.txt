@@ -29,3 +29,6 @@ x-Game mode:
 	x- Hard: six letter word omit at least one at most 3;
 
 x-input 0 - returns stack frame to calling function
+
+Handle memory allocation
+Handle errors (invalid input, excess character)

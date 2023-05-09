@@ -1,13 +1,9 @@
 #include "main.h"
 
-/************EXTERNAL AND GLOBAL VARIABLES***************/
-extern char five_word[][6];
-extern char four_word[][5];
-extern char six_word[][7];
+
 int Player_one_score = 0;
 int Player_two_score = 0;
 int total = 0;
-
 
 /**
  * mode_select - select difficulty
@@ -60,8 +56,8 @@ void easy_mode()
 {
 	int i;
 	char word[5];
-	char replaced[5];
-	char user;
+	char *replaced = NULL;
+	char user[2];
 	char *omitted;
 	int mistake = 0;
 	srand(time(NULL));
@@ -70,52 +66,48 @@ void easy_mode()
 	printf("\n\t⚠ Only input missing letters in the order they should appear\n\tℹ enter 0 to quit\n");
 	printf("\n\tComplete: %s\n", omitted);
 	printf("\tAnswer: ");
-	scanf("%c", &user);
+	scanf("%s", user);
 	getchar();
-	if (user == '0')
+	if (user[0] == '0')
 	{
 		printf("\t\tYou scored: %d/%d\n", Player_one_score, total);
 		single_player(mode_select());
 		return;
 	}
-	for (i = 0; omitted[i] != '\0'; i++)
+	replaced = replace_word(omitted, user);
+	if (!replaced)
 	{
-		if (omitted[i] == '_')
-		{
-			replaced[i] = user;
-		}
-		else
-			replaced[i] = omitted[i];
+		free(replaced);
+		exit(EXIT_FAILURE);
 	}
 	for (i = 0; replaced[i] != '\0'; i++)
 	{
-		if (replaced[i] != word[i])
+		if (replaced[i] != word[i] && replaced[i] & word[i])
 		{
-			printf("\tWrong\n");
-			printf("\n\tScore: %d/%d\n", Player_one_score, ++total);
+			printf("\tWrong\n\n\tScore: %d/%d\n", Player_one_score, ++total);
 			mistake++;
 			break;
 		}
 	}
 	if (mistake == 0)
 	{
-		printf("\tCorrect\n");
 		update_score(&Player_one_score);
-		printf("\n\tScore: %d/%d\n", Player_one_score, ++total);
+		printf("\tCorrect\n\n\tScore: %d/%d\n", Player_one_score, ++total);
 	}
+	free(replaced);
 	easy_mode();
 }
 
 /**
  * medium_mode - Gameplay a little harder than easy mode
- * 
+ *
  */
 
 void medium_mode()
 {
 	int i;
 	char word[6];
-	char replaced[6];
+	char *replaced = NULL;
 	char user[3];
 	char *omitted;
 	int mistake = 0;
@@ -134,19 +126,15 @@ void medium_mode()
 		single_player(mode_select());
 		return;
 	}
-	for (i = 0; omitted[i] != '\0'; i++)
+	replaced = replace_word(omitted, user);
+	if (!replaced)
 	{
-		if (omitted[i] == '_')
-		{
-			replaced[i] = user[j];
-			j++;
-		}
-		else
-			replaced[i] = omitted[i];
+		free(replaced);
+		exit(EXIT_FAILURE);
 	}
 	for (i = 0; replaced[i] != '\0'; i++)
 	{
-		if (replaced[i] != word[i])
+		if (replaced[i] != word[i] && replaced[i] & word[i])
 		{
 			printf("\tWrong\n");
 			printf("\tScore: %d/%d\n", Player_one_score, ++total);
@@ -158,20 +146,22 @@ void medium_mode()
 	{
 		printf("\tCorrect\n");
 		update_score(&Player_one_score);
+		printf("\tScore: %d/%d\n", Player_one_score, ++total);
 	}
+	free(replaced);
 	medium_mode();
 }
 
 /**
  * hard_mode - Function for difficult gameplay
- * 
+ *
  */
 
 void hard_mode()
 {
 	int i;
 	char word[7];
-	char replaced[7];
+	char *replaced = NULL;
 	char user[4];
 	char *omitted;
 	int mistake = 0;
@@ -190,19 +180,15 @@ void hard_mode()
 		single_player(mode_select());
 		return;
 	}
-	for (i = 0; omitted[i] != '\0'; i++)
+	replaced = replace_word(omitted, user);
+	if (!replaced)
 	{
-		if (omitted[i] == '_')
-		{
-			replaced[i] = user[j];
-			j++;
-		}
-		else
-			replaced[i] = omitted[i];
+		free(replaced);
+		exit(EXIT_FAILURE);
 	}
 	for (i = 0; replaced[i] != '\0'; i++)
 	{
-		if (replaced[i] != word[i])
+		if (replaced[i] != word[i] && replaced[i] & word[i])
 		{
 			printf("\tWrong\n");
 			printf("\n\tScore: %d/%d\n", Player_one_score, ++total);
@@ -214,7 +200,8 @@ void hard_mode()
 	{
 		printf("\tCorrect\n");
 		update_score(&Player_one_score);
+		printf("\n\tScore: %d/%d\n", Player_one_score, ++total);
 	}
+	free(replaced);
 	hard_mode();
 }
-
